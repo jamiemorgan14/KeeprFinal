@@ -3,11 +3,10 @@
     <navbar></navbar>
     <h1>Welcome Home</h1>
     <div v-for="keep in keeps" class="card">
-      <img class="card-img-top" src="" alt="Card image cap">
+      <img class="card-img-top" :src="keep.Img" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
+        <h5 class="card-title">{{keep.Name}}</h5>
+        <p class="card-text">{{keep.Description}}</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
@@ -24,6 +23,7 @@
       if (!this.$store.state.user.id) {
         this.$router.push({ name: "login" });
       }
+      this.$store.dispatch('getKeeps')
     },
     computed: {
       keeps() {

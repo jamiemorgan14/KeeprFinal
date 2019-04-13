@@ -29,8 +29,8 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-                INSERT INTO keeps (name, description)
-                    VALUES (@Name, @description);
+                INSERT INTO keeps (name, description, userId, img)
+                    VALUES (@Name, @Description, @UserId, Img);
                     SELECT LAST_INSERT_ID();
                 ", keepToCreate);
         keepToCreate.Id = id;
@@ -43,26 +43,28 @@ namespace keepr.Repositories
       }
     }
 
-    public Keep EditPlayer(int id, Keep editedKeep)
-    {
-      try
-      {
-        string query = @"
-                UPDATE players SET
-                    name = @editedKeep.Name,
-                    teamId = @editedKeep.TeamId
-                WHERE id = @id;
-                SELECT * FROM keeps WHERE id = @id;
-                ";
-        return _db.QueryFirstOrDefault<Keep>(query, new { id, editedKeep });
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine(e);
-        return null;
-      }
+    // public Keep EditKeep(int id, Keep editedKeep)
+    // {
+    //   try
+    //   {
+    //     string query = @"
+    //             UPDATE keeps SET
+    //                 name = @editedKeep.Name,
+    //                 description = @editedKeep.Description,
+    //                 userId = @editedKeep.UserId,
+    //                 img = @editedKeep.Img
+    //             WHERE id = @Id;
+    //             SELECT * FROM keeps WHERE id = @Id;
+    //             ";
+    //     return _db.QueryFirstOrDefault<Keep>(query, new { id, editedKeep });
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     Console.WriteLine(e);
+    //     return null;
+    //   }
 
-    }
+    // }
 
     public bool Delete(int id)
     {

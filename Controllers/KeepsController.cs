@@ -49,13 +49,13 @@ namespace keepr.Controllers
     }
 
     //EDIT
-    [HttpPut("{id}")]
-    public ActionResult<Keep> Edit(int id, [FromBody] Keep editedKeep)
-    {
-      Keep updatedKeep = _kr.EditPlayer(id, editedKeep);
-      if (updatedKeep == null) { return BadRequest("haters gonna hate"); }
-      return Ok(updatedKeep);
-    }
+    // [HttpPut("{id}")]
+    // public ActionResult<Keep> Edit(int id, [FromBody] Keep editedKeep)
+    // {
+    //   Keep updatedKeep = _kr.EditKeep(id, editedKeep);
+    //   if (updatedKeep == null) { return BadRequest("can't edit that keep"); }
+    //   return Ok(updatedKeep);
+    // }
 
     //DELETE
     [HttpDelete("{id}")]
