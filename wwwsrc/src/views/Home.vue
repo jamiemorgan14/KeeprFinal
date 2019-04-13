@@ -1,13 +1,15 @@
 <template>
-  <div class="home">
+  <div class="home container-fluid">
     <navbar></navbar>
     <h1>Welcome Home</h1>
-    <div v-for="keep in keeps" class="card">
-      <img class="card-img-top" :src="keep.Img" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{keep.Name}}</h5>
-        <p class="card-text">{{keep.Description}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row">
+      <div v-for="keep in keeps" class="card col-xs-12 col-sm-4 col-md-2">
+        <img class="card-img-top" :src="keep.img" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{keep.name}}</h5>
+          <p class="card-text">{{keep.description}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
     </div>
   </div>

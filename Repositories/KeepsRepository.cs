@@ -30,7 +30,7 @@ namespace keepr.Repositories
       {
         int id = _db.ExecuteScalar<int>(@"
                 INSERT INTO keeps (name, description, userId, img)
-                    VALUES (@Name, @Description, @UserId, Img);
+                    VALUES (@Name, @Description, @UserId, @Img);
                     SELECT LAST_INSERT_ID();
                 ", keepToCreate);
         keepToCreate.Id = id;
