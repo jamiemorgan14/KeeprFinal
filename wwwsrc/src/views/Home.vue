@@ -1,10 +1,22 @@
 <template>
   <div class="home">
+    <navbar></navbar>
     <h1>Welcome Home</h1>
+    <div v-for="keep in keeps" class="card">
+      <img class="card-img-top" src="" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import Navbar from '@/components/Navbar.vue'
+
   export default {
     name: "home",
     mounted() {
@@ -12,6 +24,14 @@
       if (!this.$store.state.user.id) {
         this.$router.push({ name: "login" });
       }
+    },
+    computed: {
+      keeps() {
+        return this.$store.state.keeps;
+      }
+    },
+    components: {
+      Navbar
     }
   };
 </script>
