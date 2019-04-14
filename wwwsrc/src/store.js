@@ -83,6 +83,13 @@ export default new Vuex.Store({
         .then(res => {
           commit('setVaults', res.data)
         })
+    },
+    createVault({ commit, dispatch }, newVault) {
+      api.post('vaults', newVault)
+    },
+    deleteVault({ commit, dispatch }, id) {
+      debugger
+      api.delete('vaults/' + id)
     }
   }
 })

@@ -19,7 +19,7 @@
           <slot name="content"></slot>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <slot name="icon"></slot>
         </div>
       </div>
     </div>
@@ -40,5 +40,4 @@
 </script>
 
 <style>
-
 </style>

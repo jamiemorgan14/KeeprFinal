@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
-        <div v-for="keep in keeps" class="card col-xs-12 col-sm-4 col-md-2">
+        <div v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2">
           <img class="card-img-top" :src="keep.img" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{keep.name}}</h5>
@@ -40,7 +40,4 @@
 </script>
 
 <style>
-  .home {
-    z-index: 1
-  }
 </style>

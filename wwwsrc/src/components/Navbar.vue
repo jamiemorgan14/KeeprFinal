@@ -24,27 +24,27 @@
         <a class="nav-link" href="#">Logout</a>
       </div>
     </nav>
-    <modal>
-      <span slot="header">I'm a modal slot!</span>
-      <span slot="content">This is where the content goes</span>
-    </modal>
+    <AllVaultModal></AllVaultModal>
   </div>
 </template>
 
 <script>
-  import Modal from '@/components/Modal.vue'
+  import AllVaultModal from '@/components/AllVaultModal.vue'
 
   export default {
     name: "navbar",
     props: [],
     data() {
       return {
+
       }
     },
-    computed: {},
+    computed: {
+
+    },
     methods: {},
     components: {
-      Modal
+      AllVaultModal
     }
   }
 </script>
