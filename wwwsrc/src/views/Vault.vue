@@ -1,10 +1,13 @@
 <template>
   <div class="Vault">
+    <navbar></navbar>
     <h1 v-if="currentVault">You're in {{currentVault.name}}</h1>
+    <h4 v-if="currentVault">{{currentVault.description}}</h4>
   </div>
 </template>
 
 <script>
+  import Navbar from '@/components/Navbar.vue'
   export default {
     name: "Vault",
     props: [],
@@ -20,6 +23,8 @@
       }
     },
     methods: {},
-    components: {}
+    components: {
+      Navbar
+    }
   }
 </script>
