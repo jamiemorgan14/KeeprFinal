@@ -1,14 +1,15 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home">
     <navbar></navbar>
-    <h1>Welcome Home</h1>
-    <div class="row">
-      <div v-for="keep in keeps" class="card col-xs-12 col-sm-4 col-md-2">
-        <img class="card-img-top" :src="keep.img" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{keep.name}}</h5>
-          <p class="card-text">{{keep.description}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container-fluid">
+      <h1>Welcome Home</h1>
+      <div class="row">
+        <div v-for="keep in keeps" class="card col-xs-12 col-sm-4 col-md-2">
+          <img class="card-img-top" :src="keep.img" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{keep.name}}</h5>
+            <p class="card-text">{{keep.description}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -37,3 +38,9 @@
     }
   };
 </script>
+
+<style>
+  .home {
+    z-index: 1
+  }
+</style>

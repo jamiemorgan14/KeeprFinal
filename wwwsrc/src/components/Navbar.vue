@@ -1,7 +1,7 @@
 <template>
   <div class="navbar px-0 py-0 mb-2">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Keepr</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,36 +12,46 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" data-toggle="modal" data-target="#mainModal">My Vaults</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
+
+          <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+          </li> -->
         </ul>
       </div>
+      <div class="nav-item text-right">
+        <a class="nav-link" href="#">Logout</a>
+      </div>
     </nav>
+    <modal>
+      <span slot="header">I'm a modal slot!</span>
+      <span slot="content">This is where the content goes</span>
+    </modal>
   </div>
 </template>
 
 <script>
+  import Modal from '@/components/Modal.vue'
+
   export default {
     name: "navbar",
     props: [],
     data() {
-      return {}
+      return {
+      }
     },
     computed: {},
     methods: {},
-    components: {}
+    components: {
+      Modal
+    }
   }
 </script>
 
 <style>
   .navbar {
     width: 100%;
-    position: sticky;
+    position: static;
   }
 </style>

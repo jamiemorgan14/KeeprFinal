@@ -24,14 +24,21 @@ export default new Vuex.Store({
     user: {},
     keeps: [],
     vaults: [],
+    activeVault: {},
     vaultkeeps: []
   },
   mutations: {
     setUser(state, user) {
-      state.user = user
+      state.user = user;
     },
     setKeeps(state, keeps) {
       state.keeps = keeps;
+    },
+    setVaults(state, vaults) {
+      state.vaults = vaults;
+    },
+    setActiveVault(state, vault) {
+      state.activeVault = vault;
     }
   },
   actions: {
@@ -69,6 +76,12 @@ export default new Vuex.Store({
       api.get('keeps')
         .then(res => {
           commit('setKeeps', res.data)
+        })
+    },
+    getVaults({ commit, dispatch }) {
+      api.get('vaults')
+        .then(res => {
+          commit('setVaults', res.data)
         })
     }
   }
