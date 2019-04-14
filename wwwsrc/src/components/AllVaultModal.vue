@@ -6,7 +6,7 @@
         <allVaults></allVaults>
       </span>
       <span slot="icon">
-        <i class="fas fa-plus-square" @click="showEditForm = true"></i>
+        <i class="fas fa-plus-square fa-3x" @click="showEditForm = true"></i>
       </span>
     </modal>
 
@@ -26,7 +26,7 @@
         </form>
       </span>
       <span slot="icon">
-        <i class="fas fa-undo-alt" @click="showEditForm = false"></i>
+        <i class="fas fa-3x fa-undo-alt" @click="showEditForm = false"></i>
       </span>
     </modal>
 

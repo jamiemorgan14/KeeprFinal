@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <CreateKeep></CreateKeep>
     <navbar></navbar>
     <div class="container-fluid">
       <h1>Welcome Home</h1>
@@ -12,15 +13,21 @@
           </div>
         </div>
       </div>
+      <i class="fas fa-4x fa-plus-square" data-toggle="modal" data-target="#mainModal"></i>
     </div>
   </div>
 </template>
 
 <script>
+  import CreateKeep from '@/components/CreateKeepModal.vue'
   import Navbar from '@/components/Navbar.vue'
 
   export default {
     name: "home",
+    data() {
+      return {
+      }
+    },
     mounted() {
       //blocks users not logged in
       if (!this.$store.state.user.id) {
@@ -34,10 +41,16 @@
       }
     },
     components: {
-      Navbar
+      Navbar,
+      CreateKeep
     }
   };
 </script>
 
-<style>
+<style scoped>
+  .fa-plus-square {
+    position: fixed;
+    bottom: 3%;
+    right: 3%
+  }
 </style>
