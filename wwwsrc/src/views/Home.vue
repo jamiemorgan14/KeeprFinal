@@ -6,6 +6,7 @@
       <h1>Welcome Home</h1>
       <div class="row">
         <div v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2">
+          <i class="fas fa-times mb-2" @click="deleteKeep(keep.id)"></i>
           <img class="card-img-top" :src="keep.img" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{keep.name}}</h5>
@@ -34,6 +35,11 @@
         this.$router.push({ name: "login" });
       }
       this.$store.dispatch('getKeeps')
+    },
+    methods: {
+      deleteKeep(id) {
+        this.$store.dispatch('deleteKeep', id)
+      }
     },
     computed: {
       keeps() {
