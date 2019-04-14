@@ -3,15 +3,17 @@
     <navbar></navbar>
     <div class="card text-center mx-5 mt-5" v-if="currentKeep">
       <div class="card-header">
-        Header
+        {{currentKeep.name}}
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{currentKeep.name}}</h5>
         <p class="card-text">{{currentKeep.description}}</p>
         <img :src="currentKeep.img" alt="">
       </div>
       <div class="card-footer text-muted">
-        2 days ago
+        <div class="d-flex justify-content-around">
+          <i class="fas fa-plus-square"></i>
+          <i class="far fa-trash-alt"></i>
+        </div>
       </div>
     </div>
   </div>
