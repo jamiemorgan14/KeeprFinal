@@ -35,7 +35,6 @@
         this.$router.push('vaults/' + id)
       },
       deleteVault(id) {
-        debugger
         this.$store.dispatch('deleteVault', id)
       }
     },

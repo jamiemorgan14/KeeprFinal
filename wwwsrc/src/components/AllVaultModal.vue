@@ -51,7 +51,6 @@
       }
     },
     updated() {
-      this.$store.dispatch('getVaults')
     },
     computed: {},
     methods: {
