@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
-        <div v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2">
+        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2">
           <i class="fas fa-times mb-2" @click="deleteKeep(keep.id)"></i>
           <img class="card-img-top" :src="keep.img" alt="Card image cap">
           <div class="card-body">
@@ -37,6 +37,9 @@
       this.$store.dispatch('getKeeps')
     },
     methods: {
+      viewKeep(id) {
+        this.$router.push('keeps/' + id)
+      },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
       }
