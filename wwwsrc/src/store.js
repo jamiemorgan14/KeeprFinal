@@ -79,7 +79,6 @@ export default new Vuex.Store({
         })
     },
     createKeep({ commit, dispatch }, newKeep) {
-      debugger
       api.post('keeps', newKeep)
         .then(res => {
           dispatch('getKeeps')
