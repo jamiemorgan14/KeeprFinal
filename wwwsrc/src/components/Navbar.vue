@@ -74,6 +74,6 @@
 
   .modal-enter-active,
   .modal-leave-active {
-    transition: opacity .25s ease
+    transition: opacity .45s ease
   }
 </style>
