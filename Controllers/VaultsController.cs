@@ -74,5 +74,13 @@ namespace keepr.Controllers
       if (vaultKeepToCreate == null) { return BadRequest("Can't add that keep to this vault"); }
       return Ok(newVaultKeep);
     }
+
+    [HttpGet("{vaultId}/keeps")]
+    public ActionResult<IEnumerable<Keep>> GetVaultKeeps(int vaultId)
+    {
+      IEnumerable<Keep> found = _vr.GetVaultKeeps(vaultId);
+      if (found == null) { return BadRequest(); }
+      return Ok(found);
+    }
   }
 }

@@ -71,7 +71,7 @@ namespace keepr.Repositories
       return success > 0;
     }
 
-    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepToCreate)
+    public VaultKeep CreateVaultKeep(VaultKeep vaultKeepToCreate)
     {
       try
       {
@@ -88,6 +88,16 @@ namespace keepr.Repositories
         Console.WriteLine(e);
         return null;
       }
+    }
+
+    public IEnumerable<Keep> GetVaultKeeps(int vaultId)
+    {
+      return _db.Query<Keep>(@"
+    SELECT * 
+      FROM vaultkeeps vk
+        INNER JOIN keeps k ON k.id = vk.keepId 
+        WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+    ");
     }
   }
 }

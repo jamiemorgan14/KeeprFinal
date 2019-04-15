@@ -2,18 +2,19 @@
   <div class="home">
     <navbar></navbar>
     <transition name="modal">
-
       <CreateKeep v-if="showModal" @closemodal="closemodal"></CreateKeep>
     </transition>
-    <div class="container-fluid">
+    <div class="container">
       <h1>Welcome Home</h1>
       <div class="row" @mouseover="clickableCard = true" @mouseleave="clickableCard = false">
-        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2" :class="{'clickable-card': clickableCard}">
-          <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
-          <img class="card-img-top" :src="keep.img" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{keep.name}}</h5>
-            <p class="card-text">{{keep.description}}</p>
+        <div class="card-columns">
+          <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card" :class="{'clickable-card': clickableCard}">
+            <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
+            <img class="card-img-top" :src="keep.img" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{keep.name}}</h5>
+              <p class="card-text">{{keep.description}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -74,12 +75,15 @@
   }
 
   .card {
-    position: relative;
     z-index: -1
   }
 
   .clickable-card {
     z-index: 1
+  }
+
+  .card-columns {
+    column-count: 5
   }
 
   .modal-enter,
