@@ -48,14 +48,14 @@ namespace keepr.Controllers
       return Ok(newVault);
     }
 
-    //EDIT
-    // [HttpPut("{id}")]
-    // public ActionResult<vault> Edit(int id, [FromBody] vault editedVault)
-    // {
-    //   vault updatedVault = _vr.EditVault(id, editedVault);
-    //   if (updatedVault == null) { return BadRequest("can't edit that vault"); }
-    //   return Ok(updatedVault);
-    // }
+    // EDIT
+    [HttpPut("{id}")]
+    public ActionResult<Vault> Edit(int id, Vault editedVault)
+    {
+      Vault updatedVault = _vr.EditVault(id, editedVault);
+      if (updatedVault == null) { return BadRequest("can't edit that vault"); }
+      return Ok(updatedVault);
+    }
 
     //DELETE
     [HttpDelete("{id}")]
@@ -66,5 +66,13 @@ namespace keepr.Controllers
       return Ok();
     }
 
+    //vaultkeeps
+    [HttpPost("{vaultId}")]
+    public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeepToCreate)
+    {
+      VaultKeep newVaultKeep = _vr.CreateVaultKeep(vaultKeepToCreate);
+      if (vaultKeepToCreate == null) { return BadRequest("Can't add that keep to this vault"); }
+      return Ok(newVaultKeep);
+    }
   }
 }

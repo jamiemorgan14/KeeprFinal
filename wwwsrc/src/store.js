@@ -107,6 +107,9 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getVaults')
         })
-    }
+    },
+    // createVaultKeep({ commit, dispatch }) {
+    //   api.post('')
+    // }
   }
 })
