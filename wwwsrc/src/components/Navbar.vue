@@ -24,7 +24,10 @@
         </ul>
       </div>
     </nav>
-    <AllVaultModal v-if="isModalVisible" @closemodal="closemodal"></AllVaultModal>
+
+    <transition name="modal">
+      <AllVaultModal v-if="isModalVisible" @closemodal="closemodal"></AllVaultModal>
+    </transition>
   </div>
 </template>
 
@@ -58,9 +61,19 @@
   }
 </script>
 
-<style>
+<style scoped>
   .navbar {
     width: 100%;
     position: static;
+  }
+
+  .modal-enter,
+  .modal-leave-active {
+    opacity: 0;
+  }
+
+  .modal-enter-active,
+  .modal-leave-active {
+    transition: opacity .25s ease
   }
 </style>

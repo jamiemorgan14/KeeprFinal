@@ -1,12 +1,15 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <CreateKeep v-if="showModal" @closemodal="closemodal"></CreateKeep>
+    <transition name="modal">
+
+      <CreateKeep v-if="showModal" @closemodal="closemodal"></CreateKeep>
+    </transition>
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
-        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2" :class="{ 'hide-card': showModal }">
-          <i class="fas fa-times mb-2" @click="deleteKeep(keep.id)"></i>
+        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2" :class="{'hide-card': showModal}">
+          <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
           <img class="card-img-top" :src="keep.img" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{keep.name}}</h5>
@@ -69,8 +72,18 @@
     right: 3%
   }
 
-  .card {
+  .hide-card {
     position: relative;
-    z-index: 1
+    z-index: -1
+  }
+
+  .modal-enter,
+  .modal-leave-active {
+    opacity: 0;
+  }
+
+  .modal-enter-active,
+  .modal-leave-active {
+    transition: opacity .25s ease
   }
 </style>
