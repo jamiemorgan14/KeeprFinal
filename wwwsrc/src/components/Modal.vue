@@ -1,31 +1,33 @@
 <template>
-  <div class="my-modal-backdrop">
-    <div class="my-modal">
-      <header class="my-modal-header">
-        <slot name="header">
-          This is the default tile!
+  <transition name="modal">
+    <div class="my-modal-backdrop">
+      <div class="my-modal">
+        <header class="my-modal-header">
+          <slot name="header">
+            This is the default tile!
 
-        </slot>
-        <button type="button" class="my-btn-close" @click="close">
-          x
-        </button>
-      </header>
-      <section class="my-modal-body">
-        <slot name="content">
-          I'm the default body!
-        </slot>
-      </section>
-      <footer class="my-modal-footer">
-        <slot name="icon">
-          I'm the default footer!
+          </slot>
+          <button type="button" class="my-btn-close" @click="close">
+            x
+          </button>
+        </header>
+        <section class="my-modal-body">
+          <slot name="content">
+            I'm the default body!
+          </slot>
+        </section>
+        <footer class="my-modal-footer">
+          <slot name="icon">
+            I'm the default footer!
 
-        </slot>
-        <button type="button" class="my-btn-green" @click="close">
-          Close me!
-        </button>
-      </footer>
+          </slot>
+          <button type="button" class="my-btn-green" @click="close">
+            Close me!
+          </button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -47,7 +49,21 @@
   }
 </script>
 
-<style scoped>
+<style>
+  .modal-enter {
+    opacity: 0;
+  }
+
+  .modal-leave-active {
+    opacity: 0;
+  }
+
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
   .my-modal-backdrop {
     position: fixed;
     z-index: 2;
