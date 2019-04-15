@@ -20,7 +20,7 @@
             <input type="checkbox" class="form-check-input" id="private">
             <label class="form-check-label" for="private">Mark as Private</label>
           </div>
-          <button type="submit" class="btn btn-primary">Create Keep</button>
+          <button type="submit" class="btn btn-primary" @click="$emit('closemodal')">Create Keep</button>
         </form>
       </span>
       <span slot="icon">icon</span>

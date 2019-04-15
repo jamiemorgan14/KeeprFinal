@@ -62,6 +62,6 @@ FOREIGN KEY (keepId)
 ) */
 
 -- USE THIS LINE FOR GET KEEPS BY VAULTID
-SELECT * FROM vaultkeeps vk
+/* SELECT * FROM vaultkeeps vk
 INNER JOIN keeps k ON k.id = vk.keepId 
-WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+WHERE (vaultId = @vaultId AND vk.userId = @userId)  */

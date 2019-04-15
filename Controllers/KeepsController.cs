@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using keepr.Models;
 using keepr.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
@@ -41,8 +42,10 @@ namespace keepr.Controllers
 
     //CREATE
     [HttpPost]
+    [Authorize]
     public ActionResult<Keep> Create([FromBody] Keep keepToCreate)
     {
+      keepToCreate.UserId = HttpContext.User.Identity.Name;
       Keep newKeep = _kr.CreateKeep(keepToCreate);
       if (newKeep == null) { return BadRequest("Can't create that keep"); }
       return Ok(newKeep);

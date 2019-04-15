@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using keepr.Models;
 using keepr.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
@@ -41,8 +42,10 @@ namespace keepr.Controllers
 
     //CREATE
     [HttpPost]
+    [Authorize]
     public ActionResult<Vault> Create([FromBody] Vault vaultToCreate)
     {
+      vaultToCreate.UserId = HttpContext.User.Identity.Name;
       Vault newVault = _vr.CreateVault(vaultToCreate);
       if (newVault == null) { return BadRequest("Can't create that vault"); }
       return Ok(newVault);
@@ -70,6 +73,7 @@ namespace keepr.Controllers
     [HttpPost("{vaultId}")]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeepToCreate)
     {
+      vaultKeepToCreate.UserId = HttpContext.User.Identity.Name;
       VaultKeep newVaultKeep = _vr.CreateVaultKeep(vaultKeepToCreate);
       if (vaultKeepToCreate == null) { return BadRequest("Can't add that keep to this vault"); }
       return Ok(newVaultKeep);
@@ -78,7 +82,8 @@ namespace keepr.Controllers
     [HttpGet("{vaultId}/keeps")]
     public ActionResult<IEnumerable<Keep>> GetVaultKeeps(int vaultId)
     {
-      IEnumerable<Keep> found = _vr.GetVaultKeeps(vaultId);
+      var userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> found = _vr.GetVaultKeeps(vaultId, userId);
       if (found == null) { return BadRequest(); }
       return Ok(found);
     }
