@@ -62,9 +62,11 @@ namespace keepr.Controllers
 
     //DELETE
     [HttpDelete("{id}")]
+    [Authorize]
     public ActionResult<string> Delete(int id)
     {
-      bool successful = _vr.Delete(id);
+      var userId = HttpContext.User.Identity.Name;
+      bool successful = _vr.Delete(id, userId);
       if (!successful) { return BadRequest(); }
       return Ok();
     }
