@@ -24,12 +24,13 @@
         </ul>
       </div>
     </nav>
-    <AllVaultModal v-if="isModalVisible"></AllVaultModal>
+    <AllVaultModal v-if="isModalVisible" @closemodal="closemodal"></AllVaultModal>
   </div>
 </template>
 
 <script>
   import AllVaultModal from '@/components/AllVaultModal.vue'
+  import Modal from '@/components/Modal.vue'
 
   export default {
     name: "navbar",
@@ -46,12 +47,13 @@
       showModal() {
         this.isModalVisible = true
       },
-      closeModal() {
+      closemodal() {
         this.isModalVisible = false
       }
     },
     components: {
-      AllVaultModal
+      AllVaultModal,
+      Modal
     }
   }
 </script>

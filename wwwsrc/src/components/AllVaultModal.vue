@@ -1,6 +1,6 @@
 <template>
   <div class="allVaultModal">
-    <modal v-if="!showEditForm">
+    <modal v-if="!showEditForm" @closemodal="$emit('closemodal')">
       <span slot="header">Your Vaults</span>
       <span slot="content">
         <allVaults></allVaults>
@@ -10,7 +10,7 @@
       </span>
     </modal>
 
-    <modal v-if="showEditForm">
+    <modal v-if="showEditForm" @closemodal="('closemodal')">
       <span slot="header">Create a Vault</span>
       <span slot="content">
         <form @submit.prevent="createVault">

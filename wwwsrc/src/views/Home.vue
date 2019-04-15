@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <CreateKeep v-if="showModal"></CreateKeep>
+    <CreateKeep v-if="showModal" @closemodal="closemodal"></CreateKeep>
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
@@ -22,6 +22,7 @@
 <script>
   import CreateKeep from '@/components/CreateKeepModal.vue'
   import Navbar from '@/components/Navbar.vue'
+  import Modal from '@/components/Modal.vue'
 
   export default {
     name: "home",
@@ -39,14 +40,12 @@
     },
     methods: {
       viewKeep(id) {
-        debugger
         this.$router.push('keeps/' + id)
       },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
       },
-      closeModal() {
-        debugger
+      closemodal() {
         this.showModal = false
       }
     },
@@ -57,7 +56,8 @@
     },
     components: {
       Navbar,
-      CreateKeep
+      CreateKeep,
+      Modal
     }
   };
 </script>

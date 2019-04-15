@@ -38,10 +38,12 @@
     computed: {},
     methods: {
       close() {
-        this.$emit('close-modal')
+        this.$emit('closemodal')
       }
     },
-    components: {}
+    components: {
+
+    }
   }
 </script>
 

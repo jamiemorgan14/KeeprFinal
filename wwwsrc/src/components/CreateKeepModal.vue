@@ -1,6 +1,6 @@
 <template>
   <div class="CreateKeep">
-    <modal>
+    <modal @closemodal="$emit('closemodal')">
       <span slot="header">Create a New Keep</span>
       <span slot="content">
         <form @submit.prevent="createKeep">
