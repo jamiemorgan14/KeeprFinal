@@ -20,7 +20,7 @@
           I'm the default footer!
 
         </slot>
-        <button type="button" class="my-btn-green" @click="close()">
+        <button type="button" class="my-btn-green" @click="close">
           Close me!
         </button>
       </footer>
@@ -38,7 +38,7 @@
     computed: {},
     methods: {
       close() {
-        this.$emit('closeModal')
+        this.$emit('close-modal')
       }
     },
     components: {}
@@ -48,6 +48,7 @@
 <style scoped>
   .my-modal-backdrop {
     position: fixed;
+    z-index: 2;
     top: 0;
     bottom: 0;
     left: 0;
@@ -64,7 +65,6 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    z-index: 1;
     width: 70%
   }
 

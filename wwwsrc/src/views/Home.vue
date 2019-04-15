@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
-        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2">
+        <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card col-6 col-sm-4 col-md-2 my-3 py-2" :class="{ 'hide-card': showModal }">
           <i class="fas fa-times mb-2" @click="deleteKeep(keep.id)"></i>
           <img class="card-img-top" :src="keep.img" alt="Card image cap">
           <div class="card-body">
@@ -14,8 +14,8 @@
           </div>
         </div>
       </div>
-      <i class="fas fa-4x fa-plus-square" @click="showModal = true"></i>
     </div>
+    <i class="fas fa-4x fa-plus-square" @click="showModal = true"></i>
   </div>
 </template>
 
@@ -39,12 +39,14 @@
     },
     methods: {
       viewKeep(id) {
+        debugger
         this.$router.push('keeps/' + id)
       },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
       },
       closeModal() {
+        debugger
         this.showModal = false
       }
     },
@@ -68,6 +70,7 @@
   }
 
   .card {
-    z-index: -1
+    position: relative;
+    z-index: 1
   }
 </style>
