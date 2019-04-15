@@ -12,7 +12,7 @@
             <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#mainModal">My Vaults</a>
+            <a class="nav-link" @click="showModal">My Vaults</a>
           </li>
 
           <!-- <li class="nav-item">
@@ -24,7 +24,7 @@
         </ul>
       </div>
     </nav>
-    <AllVaultModal></AllVaultModal>
+    <AllVaultModal v-if="isModalVisible"></AllVaultModal>
   </div>
 </template>
 
@@ -36,13 +36,20 @@
     props: [],
     data() {
       return {
-
+        isModalVisible: false
       }
     },
     computed: {
 
     },
-    methods: {},
+    methods: {
+      showModal() {
+        this.isModalVisible = true
+      },
+      closeModal() {
+        this.isModalVisible = false
+      }
+    },
     components: {
       AllVaultModal
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <CreateKeep></CreateKeep>
     <navbar></navbar>
+    <CreateKeep v-if="showModal"></CreateKeep>
     <div class="container-fluid">
       <h1>Welcome Home</h1>
       <div class="row">
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <i class="fas fa-4x fa-plus-square" data-toggle="modal" data-target="#mainModal"></i>
+      <i class="fas fa-4x fa-plus-square" @click="showModal = true"></i>
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@
     name: "home",
     data() {
       return {
+        showModal: false
       }
     },
     mounted() {
@@ -42,6 +43,9 @@
       },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
+      },
+      closeModal() {
+        this.showModal = false
       }
     },
     computed: {
@@ -61,5 +65,9 @@
     position: fixed;
     bottom: 3%;
     right: 3%
+  }
+
+  .card {
+    z-index: -1
   }
 </style>
