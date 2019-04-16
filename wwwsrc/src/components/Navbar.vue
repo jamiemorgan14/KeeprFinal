@@ -14,7 +14,7 @@
           <li class="nav-item">
             <a class="nav-link" @click="showModal">My Vaults</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="user.id">
             <a class="nav-link" @click="goToDash">Dashboard</a>
           </li>
 
@@ -22,7 +22,8 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" @click="logout" href="#">Logout</a>
+            <a v-if="user.id" class="nav-link" @click="logout" href="#">Logout</a>
+            <a v-if="!user.id" class="nav-link" @click="login" href="#">Login</a>
           </li>
         </ul>
       </div>
@@ -31,41 +32,59 @@
     <transition name="modal">
       <AllVaultModal v-if="isModalVisible" @closemodal="closemodal"></AllVaultModal>
     </transition>
+
+    <transition name="modal">
+      <LoginModal v-if="userLogin" @closemodal="closemodal"></LoginModal>
+    </transition>
   </div>
 </template>
 
 <script>
   import AllVaultModal from '@/components/AllVaultModal.vue'
   import Modal from '@/components/Modal.vue'
+  import LoginModal from '@/components/LoginModal.vue'
 
   export default {
     name: "navbar",
     props: [],
+    mounted() {
+      //checks for valid session
+      this.$store.dispatch("authenticate");
+    },
     data() {
       return {
-        isModalVisible: false
+        isModalVisible: false,
+        userLogin: false
       }
     },
     computed: {
-
+      user() {
+        return this.$store.state.user
+      }
     },
     methods: {
+
       showModal() {
         this.isModalVisible = true
       },
       closemodal() {
         this.isModalVisible = false
+        this.userLogin = false
       },
       goToDash() {
-        this.$router.push('/dashboard/')
+        this.$router.push('dashboard/')
       },
       logout() {
         this.$store.dispatch('logout')
+      },
+      login() {
+        this.userLogin = true;
       }
     },
     components: {
       AllVaultModal,
-      Modal
+      Modal,
+      LoginModal
     }
   }
 </script>

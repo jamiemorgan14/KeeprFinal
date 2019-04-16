@@ -23,7 +23,6 @@
           <button type="submit" class="btn btn-primary" @click="$emit('closemodal')">Create Keep</button>
         </form>
       </span>
-      <span slot="icon">icon</span>
     </modal>
   </div>
 </template>
