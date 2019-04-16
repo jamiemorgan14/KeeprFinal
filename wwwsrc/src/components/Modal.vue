@@ -67,7 +67,8 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    width: 70%
+    width: 70%;
+    max-height: 95%
   }
 
   .my-modal-header,

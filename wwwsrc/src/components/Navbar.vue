@@ -14,6 +14,9 @@
           <li class="nav-item">
             <a class="nav-link" @click="showModal">My Vaults</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="goToDash">Dashboard</a>
+          </li>
 
           <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
@@ -52,6 +55,9 @@
       },
       closemodal() {
         this.isModalVisible = false
+      },
+      goToDash() {
+        this.$router.push('dashboard/')
       }
     },
     components: {
