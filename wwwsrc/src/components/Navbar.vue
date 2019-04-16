@@ -12,10 +12,10 @@
             <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" @click="showModal">My Vaults</a>
+            <a class="nav-link" href="#" @click="showModal">My Vaults</a>
           </li>
           <li class="nav-item" v-if="user.id">
-            <a class="nav-link" @click="goToDash">Dashboard</a>
+            <a class="nav-link" href="#" @click="goToDash">Dashboard</a>
           </li>
 
           <!-- <li class="nav-item">

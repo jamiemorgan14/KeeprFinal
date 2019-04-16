@@ -1,31 +1,29 @@
 <template>
-  <div>
 
-    <div class="my-modal-backdrop">
-      <div class="my-modal">
-        <header class="my-modal-header">
-          <slot name="header">
-            This is the default tile!
+  <div class="my-modal-backdrop">
+    <div class="my-modal">
+      <header class="my-modal-header">
+        <slot name="header">
+          This is the default tile!
 
-          </slot>
-          <button type="button" class="my-btn-close" @click="close">
-            x
-          </button>
-        </header>
-        <section class="my-modal-body">
-          <slot name="content">
-            I'm the default body!
-          </slot>
-        </section>
-        <footer class="my-modal-footer">
-          <button type="button" class="my-btn-green" @click="close">
-            Close me!
-          </button>
-        </footer>
-      </div>
+        </slot>
+        <button type="button" class="my-btn-close" @click="close">
+          x
+        </button>
+      </header>
+      <section class="my-modal-body">
+        <slot name="content">
+          I'm the default body!
+        </slot>
+      </section>
+      <footer class="my-modal-footer">
+        <button type="button" class="my-btn-green" @click="close">
+          Close me!
+        </button>
+      </footer>
     </div>
-
   </div>
+
 </template>
 
 <script>

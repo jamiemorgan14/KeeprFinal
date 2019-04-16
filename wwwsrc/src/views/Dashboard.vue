@@ -37,14 +37,20 @@
     name: "dashboard",
     props: [],
     data() {
-      return {}
+      return {
+
+      }
     },
     created() {
-      this.$store.dispatch('getKeeps')
+      debugger
+      this.$store.dispatch('getKeepsByUser')
     },
     computed: {
       keeps() {
         return this.$store.state.keeps
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     methods: {

@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <i class="fas fa-4x fa-plus-square" @click="showVaultsModal = true"></i>
+    <i class="fas fa-4x fa-plus-square" @click="showVaultsModal = true" v-if="user.id"></i>
   </div>
 </template>
 
@@ -44,7 +44,7 @@
       if (!this.$store.state.user.id) {
         this.$router.push({ name: "home" });
       }
-      this.$store.dispatch('getKeeps')
+      this.$store.dispatch('getKeeps');
     },
     methods: {
       viewKeep(id) {

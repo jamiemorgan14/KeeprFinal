@@ -93,6 +93,12 @@ export default new Vuex.Store({
           commit('setKeeps', res.data)
         })
     },
+    getKeepsByUser({ commit, dispatch }) {
+      api.get('keeps/dashboard')
+        .then(res => {
+          commit('setKeeps', res.data)
+        })
+    },
     getActiveKeep({ commit, dispatch }, id) {
       api.get('keeps/' + id)
         .then(res => {

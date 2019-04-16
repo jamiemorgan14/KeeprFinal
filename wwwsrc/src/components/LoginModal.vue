@@ -1,7 +1,7 @@
 <template>
   <div class="login-modal">
     <modal @closemodal="$emit('closemodal')">
-      <span slot="header">Create a New Keep</span>
+      <span slot="header">Login!</span>
       <span slot="content">
         <form v-if="loginForm" @submit.prevent="loginUser">
           <input type="email" v-model="creds.email" placeholder="email">
@@ -48,7 +48,9 @@
     },
     methods: {
       register() {
+        debugger
         this.$store.dispatch("register", this.newUser);
+        this.$emit('closemodal')
       },
       loginUser() {
         this.$store.dispatch("login", this.creds);

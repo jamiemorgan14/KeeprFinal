@@ -41,13 +41,14 @@ namespace keepr.Controllers
     }
 
     //GETBYUSERID
-    [HttpGet]
-    public ActionResult<IEnumerable<Keep>> GetAction(string userId)
+    [Authorize]
+    [HttpGet("dashboard")]
+    public ActionResult<IEnumerable<Keep>> GetAction()
     {
-      userId = HttpContext.User.Identity.Name;
+      string userId = HttpContext.User.Identity.Name;
       IEnumerable<Keep> results = _kr.GetByUserId(userId);
       if (results == null) { return BadRequest(); }
-      return Ok();
+      return Ok(results);
     }
 
     //CREATE
