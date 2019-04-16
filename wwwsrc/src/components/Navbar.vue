@@ -22,7 +22,7 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" @click="logout" href="#">Logout</a>
           </li>
         </ul>
       </div>
@@ -58,6 +58,9 @@
       },
       goToDash() {
         this.$router.push('/dashboard/')
+      },
+      logout() {
+        this.$store.dispatch('logout')
       }
     },
     components: {
