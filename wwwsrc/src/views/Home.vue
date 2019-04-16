@@ -10,7 +10,6 @@
       <div class="row" @mouseover="clickableCard = true" @mouseleave="clickableCard = false">
         <div class="card-columns">
           <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card" :class="{'clickable-card': clickableCard}">
-            <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
             <img class="card-img-top" :src="keep.img" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{keep.name}}</h5>
@@ -51,9 +50,6 @@
       viewKeep(id) {
         this.showKeepModal = true
         this.chosenKeepId = id
-      },
-      deleteKeep(id) {
-        this.$store.dispatch('deleteKeep', id)
       },
       closemodal() {
         this.showVaultsModal = false

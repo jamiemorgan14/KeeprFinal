@@ -57,7 +57,7 @@
         this.isModalVisible = false
       },
       goToDash() {
-        this.$router.push('dashboard/')
+        this.$router.push('/dashboard/')
       }
     },
     components: {
