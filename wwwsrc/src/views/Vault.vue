@@ -26,7 +26,6 @@
     name: "Vault",
     props: [],
     created() {
-      debugger
       this.$store.dispatch('getActiveVault', this.$route.params.vaultId)
       this.$store.dispatch('getVaultKeeps', this.$route.params.vaultId)
     },

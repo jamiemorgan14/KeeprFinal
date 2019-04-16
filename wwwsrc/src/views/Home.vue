@@ -3,7 +3,7 @@
     <navbar></navbar>
     <transition name="modal">
       <CreateKeep v-if="showVaultsModal" @closemodal="closemodal"></CreateKeep>
-      <Keep v-if="showKeepModal" @closemodal="closemodal"></Keep>
+      <Keep :chosenKeepId="chosenKeepId" v-if="showKeepModal" @closemodal="closemodal"></Keep>
     </transition>
     <div class="container">
       <h1>Welcome Home</h1>
@@ -28,7 +28,7 @@
   import CreateKeep from '@/components/CreateKeepModal.vue'
   import Navbar from '@/components/Navbar.vue'
   import Modal from '@/components/Modal.vue'
-  import Keep from '@/components/Keep.vue'
+  import Keep from '@/components/KeepModal.vue'
 
   export default {
     name: "home",
@@ -36,7 +36,8 @@
       return {
         showVaultsModal: false,
         showKeepModal: false,
-        clickableCard: false
+        clickableCard: false,
+        chosenKeepId: 0
       }
     },
     mounted() {
@@ -49,6 +50,7 @@
     methods: {
       viewKeep(id) {
         this.showKeepModal = true
+        this.chosenKeepId = id
       },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
