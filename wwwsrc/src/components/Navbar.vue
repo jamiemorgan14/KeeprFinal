@@ -70,10 +70,12 @@
   .modal-enter,
   .modal-leave-active {
     opacity: 0;
+    z-index: 5
   }
 
   .modal-enter-active,
   .modal-leave-active {
-    transition: opacity .45s ease
+    transition: opacity .45s ease;
+    z-index: 5;
   }
 </style>
