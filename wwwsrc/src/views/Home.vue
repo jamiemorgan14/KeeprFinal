@@ -2,7 +2,8 @@
   <div class="home">
     <navbar></navbar>
     <transition name="modal">
-      <CreateKeep v-if="showModal" @closemodal="closemodal"></CreateKeep>
+      <CreateKeep v-if="showVaultsModal" @closemodal="closemodal"></CreateKeep>
+      <Keep v-if="showKeepModal" @closemodal="closemodal"></Keep>
     </transition>
     <div class="container">
       <h1>Welcome Home</h1>
@@ -19,7 +20,7 @@
         </div>
       </div>
     </div>
-    <i class="fas fa-4x fa-plus-square" @click="showModal = true"></i>
+    <i class="fas fa-4x fa-plus-square" @click="showVaultsModal = true"></i>
   </div>
 </template>
 
@@ -27,12 +28,14 @@
   import CreateKeep from '@/components/CreateKeepModal.vue'
   import Navbar from '@/components/Navbar.vue'
   import Modal from '@/components/Modal.vue'
+  import Keep from '@/components/Keep.vue'
 
   export default {
     name: "home",
     data() {
       return {
-        showModal: false,
+        showVaultsModal: false,
+        showKeepModal: false,
         clickableCard: false
       }
     },
@@ -45,13 +48,14 @@
     },
     methods: {
       viewKeep(id) {
-        this.$router.push('keeps/' + id)
+        this.showKeepModal = true
       },
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
       },
       closemodal() {
-        this.showModal = false
+        this.showVaultsModal = false
+        this.showKeepModal = false
       }
     },
     computed: {
@@ -62,7 +66,8 @@
     components: {
       Navbar,
       CreateKeep,
-      Modal
+      Modal,
+      Keep
     }
   };
 </script>

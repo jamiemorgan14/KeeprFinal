@@ -26,7 +26,8 @@
     name: "Vault",
     props: [],
     created() {
-      this.$store.dispatch('getVaults')
+      debugger
+      this.$store.dispatch('getActiveVault', this.$route.params.vaultId)
       this.$store.dispatch('getVaultKeeps', this.$route.params.vaultId)
     },
     data() {
@@ -34,7 +35,7 @@
     },
     computed: {
       currentVault() {
-        return this.$store.state.vaults.find(v => v.id == this.$route.params.vaultId)
+        return this.$store.state.activeVault
       },
       vaultKeeps() {
         return this.$store.state.vaultKeeps
