@@ -20,7 +20,7 @@
             <input v-model="newKeep.img" type="text" class="form-control" id="keepImage" placeholder="Upload an Image URL">
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="private">
+            <input type="checkbox" class="form-check-input" id="private" @click="newKeep.isPrivate = !newKeep.isPrivate">
             <label class="form-check-label" for="private">Mark as Private</label>
           </div>
           <button type="submit" class="btn btn-primary" @click="$emit('closemodal')">Create Keep</button>
@@ -65,7 +65,7 @@
           description: '',
           img: '',
           userId: this.$store.state.user.id,
-
+          isPrivate: false
         },
         createVaultForm: false,
         newVault: {
