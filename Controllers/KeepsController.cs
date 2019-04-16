@@ -40,6 +40,16 @@ namespace keepr.Controllers
       return Ok(found);
     }
 
+    //GETBYUSERID
+    [HttpGet]
+    public ActionResult<IEnumerable<Keep>> GetAction(string userId)
+    {
+      userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _kr.GetByUserId(userId);
+      if (results == null) { return BadRequest(); }
+      return Ok();
+    }
+
     //CREATE
     [HttpPost]
     [Authorize]

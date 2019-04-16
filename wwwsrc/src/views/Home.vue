@@ -6,7 +6,7 @@
       <Keep :chosenKeepId="chosenKeepId" v-if="showKeepModal" @closemodal="closemodal"></Keep>
     </transition>
     <div class="container">
-      <h1>Welcome Home</h1>
+      <h1>Welcome Home {{user.username}}</h1>
       <div class="row" @mouseover="clickableCard = true" @mouseleave="clickableCard = false">
         <div class="card-columns">
           <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card" :class="{'clickable-card': clickableCard}">
@@ -59,6 +59,9 @@
     computed: {
       keeps() {
         return this.$store.state.keeps;
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     components: {

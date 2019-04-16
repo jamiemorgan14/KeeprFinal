@@ -43,6 +43,11 @@ namespace keepr.Repositories
       }
     }
 
+    internal IEnumerable<Keep> GetByUserId(string userId)
+    {
+      return _db.Query<Keep>(@"SELECT * FROM keeps WHERE id = @userId", new { userId });
+    }
+
     // public Keep EditKeep(int id, Keep editedKeep)
     // {
     //   try

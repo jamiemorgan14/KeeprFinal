@@ -59,13 +59,14 @@ export default new Vuex.Store({
           console.log('[registration failed] :', e)
         })
     },
+
     authenticate({ commit, dispatch }) {
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'home' })
         })
         .catch(e => {
+          router.push({ name: 'home' })
           console.log('not authenticated')
         })
     },

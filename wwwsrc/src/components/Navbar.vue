@@ -65,14 +65,18 @@
     methods: {
 
       showModal() {
-        this.isModalVisible = true
+        if (this.user.id) {
+          this.isModalVisible = true
+        } else {
+          alert('sign in to create and view vaults')
+        }
       },
       closemodal() {
         this.isModalVisible = false
         this.userLogin = false
       },
       goToDash() {
-        this.$router.push('dashboard/')
+        this.$router.push('dashboard')
       },
       logout() {
         this.$store.dispatch('logout')
