@@ -18,10 +18,6 @@
           </slot>
         </section>
         <footer class="my-modal-footer">
-          <slot name="icon">
-            I'm the default footer!
-
-          </slot>
           <button type="button" class="my-btn-green" @click="close">
             Close me!
           </button>

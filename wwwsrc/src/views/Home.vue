@@ -90,7 +90,7 @@
   }
 
   .card-columns {
-    column-count: 5
+    column-count: 4
   }
 
   .modal-enter,

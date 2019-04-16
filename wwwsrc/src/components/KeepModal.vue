@@ -1,25 +1,36 @@
 <template>
   <div class="Keep">
     <modal @closemodal="$emit('closemodal')" v-if="currentKeep">
-      <span slot="header">{{currentKeep.name}}</span>
+      <span slot="header"></span>
       <span slot="content">
         <div class="card text-center mx-5 mt-5">
           <div class="card-header">
-            {{currentKeep.description}}
+            {{currentKeep.name}}
           </div>
           <div class="card-body">
-            <p class="card-text">Current</p>
+            <p class="card-text">{{currentKeep.description}}</p>
             <img :src="currentKeep.img" alt="">
           </div>
           <div class="card-footer text-muted">
-            <div class="d-flex justify-content-around">
-              <i class="fas fa-plus-square"></i>
-              <i class="far fa-trash-alt"></i>
+            <div class="d-flex justify-content-between">
+              <i class="fas fa-2x fa-plus-square"></i>
+              <i class="far fa-2x fa-trash-alt"></i>
+              <!-- Example split danger button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger" disabled>Add to Vault</button>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a v-for="vault in vaults" @click="addVaultKeep(newVaultKeep, vault.id)" class="dropdown-item" href="#">{{vault.name}}</a>
+                  <a class="dropdown-item" href="#">Nevermind!</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </span>
-      <span slot="icon">icon</span>
     </modal>
   </div>
 </template>
@@ -30,10 +41,16 @@
     name: "Keep",
     props: ["chosenKeepId"],
     data() {
-      return {}
+      return {
+        newVaultKeep: {
+          keepId: this.chosenKeepId,
+          vaultId: 0
+        }
+      }
     },
     created() {
       this.$store.dispatch('getActiveKeep', this.chosenKeepId)
+      this.$store.dispatch('getVaults')
     },
     destroyed() {
       this.$store.dispatch('getActiveKeep', '')
@@ -41,9 +58,17 @@
     computed: {
       currentKeep() {
         return this.$store.state.activeKeep
+      },
+      vaults() {
+        return this.$store.state.vaults
       }
     },
-    methods: {},
+    methods: {
+      addVaultKeep(newVaultKeep, vaultId) {
+        newVaultKeep.vaultId = vaultId
+        this.$store.dispatch('createVaultKeep', newVaultKeep)
+      }
+    },
     components: {
       Modal
     }
