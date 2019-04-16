@@ -42,7 +42,6 @@
       }
     },
     created() {
-      debugger
       this.$store.dispatch('getKeepsByUser')
     },
     computed: {

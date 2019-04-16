@@ -1,7 +1,10 @@
 <template>
   <div class="CreateKeep">
-    <modal @closemodal="$emit('closemodal')">
-      <span slot="header">Create a New Keep</span>
+    <modal @closemodal="$emit('closemodal')" v-if="!createVaultForm">
+      <span slot="header">Create a New Keep
+        <button class="btn btn-info" @click="createVaultForm = true">Create a vault</button>
+      </span>
+
       <span slot="content">
         <form @submit.prevent="createKeep">
           <div class="form-group">
@@ -24,6 +27,28 @@
         </form>
       </span>
     </modal>
+
+    <modal v-if="createVaultForm" @closemodal="('closemodal')">
+      <span slot="header">Create a Vault
+        <button class="btn btn-info" @click="createVaultForm = false">Create Keep</button>
+      </span>
+      <span slot="content">
+        <form @submit.prevent="createVault">
+          <div class="form-group">
+            <label for="vaultName">Vault Name</label>
+            <input v-model="newVault.name" type="text" class="form-control" id="vaultName" placeholder="Vault Name">
+          </div>
+          <div class="form-group">
+            <label for="vaultDescription">Vault Description</label>
+            <input v-model="newVault.description" type="text" class="form-control" id="vaultDescription" placeholder="Vault Description">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Vault</button>
+        </form>
+      </span>
+      <span slot="icon">
+        <i class="fas fa-3x fa-undo-alt" @click="showEditForm = false"></i>
+      </span>
+    </modal>
   </div>
 </template>
 
@@ -39,7 +64,13 @@
           name: '',
           description: '',
           img: '',
-          userId: this.$store.state.user.id
+          userId: this.$store.state.user.id,
+
+        },
+        createVaultForm: false,
+        newVault: {
+          name: '',
+          description: ''
         }
       }
     },
@@ -47,6 +78,10 @@
     methods: {
       createKeep() {
         this.$store.dispatch('createKeep', this.newKeep)
+      },
+      createVault() {
+        this.$store.dispatch('createVault', this.newVault)
+        this.showEditForm = false
       }
     },
     components: {

@@ -11,7 +11,7 @@
             <p class="card-text">{{currentKeep.description}}</p>
             <img :src="currentKeep.img" alt="">
           </div>
-          <div class="card-footer text-muted">
+          <div v-if="this.$store.state.user.id" class="card-footer text-muted">
             <div class="d-flex justify-content-between">
               <i class="fas fa-2x fa-plus-square"></i>
               <i class="far fa-2x fa-trash-alt"></i>

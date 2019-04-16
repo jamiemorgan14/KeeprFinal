@@ -48,7 +48,6 @@
     },
     methods: {
       register() {
-        debugger
         this.$store.dispatch("register", this.newUser);
         this.$emit('closemodal')
       },
