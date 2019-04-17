@@ -62,14 +62,15 @@ namespace keepr.Controllers
       return Ok(newKeep);
     }
 
-    //EDIT
-    // [HttpPut("{id}")]
-    // public ActionResult<Keep> Edit(int id, [FromBody] Keep editedKeep)
-    // {
-    //   Keep updatedKeep = _kr.EditKeep(id, editedKeep);
-    //   if (updatedKeep == null) { return BadRequest("can't edit that keep"); }
-    //   return Ok(updatedKeep);
-    // }
+    // EDIT
+    [HttpPut("{id}")]
+    [Authorize]
+    public ActionResult<Keep> Edit(int id, [FromBody] Keep editedKeep)
+    {
+      Keep updatedKeep = _kr.EditKeep(id, editedKeep);
+      if (updatedKeep == null) { return BadRequest("can't edit that keep"); }
+      return Ok(updatedKeep);
+    }
 
     //DELETE
     [HttpDelete("{id}")]

@@ -111,6 +111,12 @@ export default new Vuex.Store({
           dispatch('getKeeps')
         })
     },
+    editKeep({ commit, dispatch }, editedKeep) {
+      api.put('keeps/' + editedKeep.id, editedKeep)
+        .then(res => {
+          dispatch('getKeeps')
+        })
+    },
     deleteKeep({ commit, dispatch }, id) {
       api.delete('keeps/' + id)
         .then(res => {

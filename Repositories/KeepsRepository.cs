@@ -48,28 +48,33 @@ namespace keepr.Repositories
       return _db.Query<Keep>(@"SELECT * FROM keeps WHERE userId = @userId", new { userId });
     }
 
-    // public Keep EditKeep(int id, Keep editedKeep)
-    // {
-    //   try
-    //   {
-    //     string query = @"
-    //             UPDATE keeps SET
-    //                 name = @editedKeep.Name,
-    //                 description = @editedKeep.Description,
-    //                 userId = @editedKeep.UserId,
-    //                 img = @editedKeep.Img
-    //             WHERE id = @Id;
-    //             SELECT * FROM keeps WHERE id = @Id;
-    //             ";
-    //     return _db.QueryFirstOrDefault<Keep>(query, new { id, editedKeep });
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     Console.WriteLine(e);
-    //     return null;
-    //   }
+    public Keep EditKeep(int id, Keep editedKeep)
+    {
+      try
+      {
+        string query = @"
+                UPDATE keeps SET
+                    name = @editedKeep.Name,
+                    description = @editedKeep.Description,
+                    userId = @editedKeep.UserId,
+                    img = @editedKeep.Img,
+                    keeps = @editedKeep.Keeps,
+                    isPrivate = @editedKeep.IsPrivate,
+                    shares = @editedKeep.Shares,
+                    views = @editedKeep.Views
 
-    // }
+                WHERE id = @id;
+                SELECT * FROM keeps WHERE id = @id;
+                ";
+        return _db.QueryFirstOrDefault<Keep>(query, new { id, editedKeep });
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+        return null;
+      }
+
+    }
 
     public bool Delete(int id, string userId)
     {
