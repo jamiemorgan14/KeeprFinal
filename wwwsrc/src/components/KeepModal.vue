@@ -49,13 +49,12 @@
       this.$store.dispatch('getVaults')
     },
     updated() {
-      if (this.$store.state.activeKeep.id) {
-        this.currentKeep.views++
-        this.$store.dispatch('editKeep', this.currentKeep)
-      }
+
     },
     destroyed() {
       this.$store.dispatch('getActiveKeep', '')
+      this.currentKeep.views++
+      this.$store.dispatch('editKeep', this.currentKeep)
     },
     computed: {
       currentKeep() {
