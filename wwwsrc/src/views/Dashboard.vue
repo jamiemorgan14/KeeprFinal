@@ -102,6 +102,7 @@
     methods: {
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
+        this.$store.dispatch('getKeepsByUser', id)
       },
       showEditModal(keep) {
         this.editedKeep = keep

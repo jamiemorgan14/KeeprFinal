@@ -32,10 +32,10 @@
     <transition name="modal">
       <AllVaultModal v-if="isModalVisible" @closemodal="closemodal"></AllVaultModal>
     </transition>
-
     <transition name="modal">
       <LoginModal v-if="userLogin" @closemodal="closemodal"></LoginModal>
     </transition>
+
   </div>
 </template>
 
@@ -75,7 +75,7 @@
         this.userLogin = false
       },
       goToDash() {
-        this.$router.push('dashboard')
+        this.$router.push({ name: 'dashboard' })
       },
       logout() {
         this.$store.dispatch('logout')
@@ -119,12 +119,10 @@
   .modal-enter,
   .modal-leave-active {
     opacity: 0;
-    z-index: 5
   }
 
   .modal-enter-active,
   .modal-leave-active {
     transition: opacity .45s ease;
-    z-index: 5;
   }
 </style>

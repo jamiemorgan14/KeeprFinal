@@ -2,8 +2,8 @@
   <div class="Vault">
     <navbar></navbar>
     <div class="container">
-      <h1 v-if="currentVault">You're in {{currentVault.name}}</h1>
-      <h4 v-if="currentVault">{{currentVault.description}}</h4>
+      <h1 v-if="currentVault" class="header">You're in {{currentVault.name}}</h1>
+      <h4 v-if="currentVault" class="sub-titles">{{currentVault.description}}</h4>
       <div class="row">
         <div class="card-columns">
           <div v-for="keep in vaultKeeps" class="card">
@@ -46,3 +46,17 @@
     }
   }
 </script>
+
+<style scoped>
+  .Vault {
+    min-height: 100vh
+  }
+
+  .header {
+    color: #ff5959
+  }
+
+  .sub-titles {
+    color: #4f9da6
+  }
+</style>
