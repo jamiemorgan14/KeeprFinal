@@ -54,19 +54,19 @@ namespace keepr.Repositories
       {
         string query = @"
                 UPDATE keeps SET
-                    name = @editedKeep.Name,
-                    description = @editedKeep.Description,
-                    userId = @editedKeep.UserId,
-                    img = @editedKeep.Img,
-                    keeps = @editedKeep.Keeps,
-                    isPrivate = @editedKeep.IsPrivate,
-                    shares = @editedKeep.Shares,
-                    views = @editedKeep.Views
+                    name = @Name,
+                    description = @Description,
+                    userId = @UserId,
+                    img = @Img,
+                    keeps = @Keeps,
+                    isPrivate = @IsPrivate,
+                    shares = @Shares,
+                    views = @Views
 
                 WHERE id = @id;
                 SELECT * FROM keeps WHERE id = @id;
                 ";
-        return _db.QueryFirstOrDefault<Keep>(query, new { id, editedKeep });
+        return _db.QueryFirstOrDefault<Keep>(query, editedKeep);
       }
       catch (Exception e)
       {

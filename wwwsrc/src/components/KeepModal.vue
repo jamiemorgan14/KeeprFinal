@@ -52,6 +52,10 @@
       this.$store.dispatch('getActiveKeep', this.chosenKeepId)
       this.$store.dispatch('getVaults')
     },
+    beforeDestroy() {
+      this.currentKeep.views++
+      this.$store.dispatch('editKeep', this.currentKeep)
+    },
     destroyed() {
       this.$store.dispatch('getActiveKeep', '')
     },

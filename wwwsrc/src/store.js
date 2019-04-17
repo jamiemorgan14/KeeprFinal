@@ -112,6 +112,7 @@ export default new Vuex.Store({
         })
     },
     editKeep({ commit, dispatch }, editedKeep) {
+      debugger
       api.put('keeps/' + editedKeep.id, editedKeep)
         .then(res => {
           dispatch('getKeeps')
