@@ -48,7 +48,7 @@
 <style scoped>
   .my-modal-backdrop {
     position: fixed;
-    z-index: 3;
+    z-index: 6;
     top: 0;
     bottom: 0;
     left: 0;

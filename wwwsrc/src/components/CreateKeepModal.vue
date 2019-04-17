@@ -28,7 +28,7 @@
       </span>
     </modal>
 
-    <modal v-if="createVaultForm" @closemodal="('closemodal')">
+    <modal v-if="createVaultForm" @closemodal="$emit('closemodal')">
       <span slot="header">Create a Vault
         <button class="btn btn-info" @click="createVaultForm = false">Create Keep</button>
       </span>
@@ -98,3 +98,6 @@
     }
   }
 </script>
+
+<style scoped>
+</style>

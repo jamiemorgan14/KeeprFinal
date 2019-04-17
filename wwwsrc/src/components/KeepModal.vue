@@ -23,7 +23,7 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu">
-                  <a v-for="vault in vaults" @click="addVaultKeep(newVaultKeep, vault.id)" class="dropdown-item" href="#">{{vault.name}}</a>
+                  <a v-for="vault in vaults" @click="addVaultKeep(chosenKeep, vault.id)" class="dropdown-item" href="#">{{vault.name}}</a>
                   <a class="dropdown-item" href="#">Nevermind!</a>
                 </div>
               </div>
@@ -39,22 +39,20 @@
   import Modal from '@/components/Modal.vue'
   export default {
     name: "Keep",
-    props: ["chosenKeepId"],
+    props: ["chosenKeep"],
     data() {
       return {
-        newVaultKeep: {
-          keepId: this.chosenKeepId,
-          vaultId: 0
-        }
       }
     },
     created() {
-      this.$store.dispatch('getActiveKeep', this.chosenKeepId)
+      this.$store.dispatch('getActiveKeep', this.chosenKeep.id)
       this.$store.dispatch('getVaults')
     },
-    beforeDestroy() {
-      this.currentKeep.views++
-      this.$store.dispatch('editKeep', this.currentKeep)
+    updated() {
+      if (this.$store.state.activeKeep.id) {
+        this.currentKeep.views++
+        this.$store.dispatch('editKeep', this.currentKeep)
+      }
     },
     destroyed() {
       this.$store.dispatch('getActiveKeep', '')
@@ -65,12 +63,18 @@
       },
       vaults() {
         return this.$store.state.vaults
+      },
+      goHome() {
+
       }
     },
     methods: {
-      addVaultKeep(newVaultKeep, vaultId) {
-        newVaultKeep.vaultId = vaultId
-        this.$store.dispatch('createVaultKeep', newVaultKeep)
+      addVaultKeep(chosenKeep, vaultId) {
+        chosenKeep.keeps++
+        this.$store.dispatch('editKeep', chosenKeep)
+        chosenKeep.vaultId = vaultId
+        this.$store.dispatch('createVaultKeep', { keepId: chosenKeep.id, vaultId: vaultId })
+        this.$emit('closemodal')
       }
     },
     components: {

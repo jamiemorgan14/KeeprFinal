@@ -4,12 +4,12 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>Your Dashboard</h1>
+          <h1 class="dash">Your Dashboard</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-6 myKeeps">
-          <h2>Your Keeps</h2>
+          <h2 class="sub-title">Your Keeps</h2>
           <div class="row">
             <div v-for="keep in keeps" class="card col-sm-12 col-lg-4">
               <div class="d-flex justify-content-around">
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="col-6 myVaults">
-          <h2>Your Vaults</h2>
+          <h2 class="sub-title">Your Vaults</h2>
           <AllVaults></AllVaults>
         </div>
       </div>
@@ -132,6 +132,14 @@
 </script>
 
 <style scoped>
+  .dash {
+    color: #ff5959
+  }
+
+  .sub-title {
+    color: #4f9da6
+  }
+
   .modal-enter,
   .modal-leave-active {
     opacity: 0;
@@ -140,5 +148,9 @@
   .modal-enter-active,
   .modal-leave-active {
     transition: opacity .45s ease
+  }
+
+  .dashboard {
+    min-height: 100vh
   }
 </style>

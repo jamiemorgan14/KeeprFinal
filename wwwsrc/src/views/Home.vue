@@ -1,15 +1,16 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <transition name="modal">
-      <CreateKeep v-if="showVaultsModal" @closemodal="closemodal"></CreateKeep>
-      <Keep :chosenKeepId="chosenKeepId" v-if="showKeepModal" @closemodal="closemodal"></Keep>
-    </transition>
     <div class="container">
-      <h1>Welcome Home {{user.username}}</h1>
+      <h1 class="welcome my-3 text-capitalize">Welcome Home {{user.username}}</h1>
       <div class="row" @mouseover="clickableCard = true" @mouseleave="clickableCard = false">
         <div class="card-columns">
-          <div @click="viewKeep(keep.id)" v-for="keep in keeps" class="card" :class="{'clickable-card': clickableCard}">
+          <div @click="viewKeep(keep)" v-for="keep in keeps" v-if="!keep.isPrivate" class="card w-100" :class="{'clickable-card': clickableCard}">
+            <div class="d-flex justify-content-around my-2">
+              <i class="far fa-eye">: {{keep.views}}</i>
+              <i class="fas fa-snowboarding">: {{keep.keeps}}</i>
+              <i class="fas fa-share-alt-square">: {{keep.shares}}</i>
+            </div>
             <img class="card-img-top" :src="keep.img" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{keep.name}}</h5>
@@ -20,6 +21,10 @@
       </div>
     </div>
     <i class="fas fa-4x fa-plus-square" @click="showVaultsModal = true" v-if="user.id"></i>
+    <transition name="modal">
+      <CreateKeep v-if="showVaultsModal" @closemodal="closemodal"></CreateKeep>
+      <Keep :chosenKeep="chosenKeep" v-if="showKeepModal" @closemodal="closemodal"></Keep>
+    </transition>
   </div>
 </template>
 
@@ -36,7 +41,7 @@
         showVaultsModal: false,
         showKeepModal: false,
         clickableCard: false,
-        chosenKeepId: 0
+        chosenKeep: {}
       }
     },
     mounted() {
@@ -47,9 +52,9 @@
       this.$store.dispatch('getKeeps');
     },
     methods: {
-      viewKeep(id) {
+      viewKeep(keep) {
         this.showKeepModal = true
-        this.chosenKeepId = id
+        this.chosenKeep = keep
       },
       closemodal() {
         this.showVaultsModal = false
@@ -74,19 +79,27 @@
 </script>
 
 <style scoped>
+  .welcome {
+    color: #facf5a
+  }
+
+  .home {
+    min-height: 100vh
+  }
+
   .fa-plus-square {
     position: fixed;
     bottom: 3%;
-    right: 3%
+    right: 3%;
+    color: #facf5a
   }
 
   .card {
-    z-index: -1;
     display: inline-block
   }
 
-  .clickable-card {
-    z-index: 1
+  .card-columns {
+    max-width: 100%
   }
 
   @media (min-width: 200px) {
@@ -132,10 +145,12 @@
   .modal-enter,
   .modal-leave-active {
     opacity: 0;
+    z-index: 5;
   }
 
   .modal-enter-active,
   .modal-leave-active {
-    transition: opacity .45s ease
+    transition: opacity .45s ease;
+    z-index: 5;
   }
 </style>

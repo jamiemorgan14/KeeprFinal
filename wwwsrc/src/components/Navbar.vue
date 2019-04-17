@@ -1,29 +1,29 @@
 <template>
   <div class="navbar px-0 py-0 mb-2">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Keepr</a>
+    <nav class="navbar navbar-expand-lg">
+      <h2 class="my-brand">Keepr</h2>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-hamburger fa-2x"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" @click="goHome">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="showModal">My Vaults</a>
+            <a class="nav-link" @click="showModal">My Vaults</a>
           </li>
           <li class="nav-item" v-if="user.id">
-            <a class="nav-link" href="#" @click="goToDash">Dashboard</a>
+            <a class="nav-link" @click="goToDash">Dashboard</a>
           </li>
 
           <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
           </li> -->
           <li class="nav-item">
-            <a v-if="user.id" class="nav-link" @click="logout" href="#">Logout</a>
-            <a v-if="!user.id" class="nav-link" @click="login" href="#">Login</a>
+            <a v-if="user.id" class="nav-link" @click="logout">Logout</a>
+            <a v-if="!user.id" class="nav-link" @click="login">Login</a>
           </li>
         </ul>
       </div>
@@ -63,7 +63,6 @@
       }
     },
     methods: {
-
       showModal() {
         if (this.user.id) {
           this.isModalVisible = true
@@ -83,6 +82,9 @@
       },
       login() {
         this.userLogin = true;
+      },
+      goHome() {
+        this.$router.push({ name: 'home' })
       }
     },
     components: {
@@ -97,6 +99,21 @@
   .navbar {
     width: 100%;
     position: static;
+    background-color: #ff5959;
+  }
+
+  .fa-hamburger {
+    color: #facf5a
+  }
+
+  .nav-item {
+    color: #233142
+  }
+
+  .my-brand {
+    color: #facf5a;
+    margin-right: 5px;
+    display: inline-block
   }
 
   .modal-enter,
