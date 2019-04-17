@@ -17,6 +17,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{keep.name}}</h5>
                 <p class="card-text">{{keep.description}}</p>
+                <i class="fas fa-user-secret" v-if="keep.isPrivate"></i>
               </div>
             </div>
           </div>
