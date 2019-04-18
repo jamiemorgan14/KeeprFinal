@@ -2,8 +2,8 @@
   <div class="CreateKeep">
     <modal @closemodal="$emit('closemodal')" v-if="!createVaultForm">
       <span slot="header">Create a New Keep
-        <br>
-        <button class="my-btn-green" @click="createVaultForm = true">Create a vault</button>
+        <hr>
+        <button class="my-btn-switch" @click="createVaultForm = true">Create a vault</button>
       </span>
 
       <span slot="content">
@@ -24,7 +24,7 @@
             <input type="checkbox" class="form-check-input" id="private" @click="flipPrivate">
             <label class="form-check-label" for="private">Mark as Private</label>
           </div>
-          <button type="submit" class="my-btn-green mt-2" @click="$emit('closemodal')">Create Keep</button>
+          <button type="submit" class="my-btn-submit mt-2" @click="$emit('closemodal')">Create Keep</button>
         </form>
       </span>
     </modal>
@@ -32,7 +32,7 @@
     <modal v-if="createVaultForm" @closemodal="$emit('closemodal')">
       <span slot="header">Create a Vault
         <hr>
-        <button class="my-btn-green" @click="createVaultForm = false">Create Keep</button>
+        <button class="my-btn-switch" @click="createVaultForm = false">Create Keep</button>
       </span>
       <span slot="content">
         <form @submit.prevent="createVault">
@@ -44,7 +44,7 @@
             <label for="vaultDescription">Vault Description</label>
             <input v-model="newVault.description" type="text" class="form-control" id="vaultDescription" placeholder="Vault Description">
           </div>
-          <button type="submit" class="my-btn-green mt-2">Create Vault</button>
+          <button type="submit" class="my-btn-submit mt-2">Create Vault</button>
         </form>
       </span>
       <span slot="icon">
@@ -102,15 +102,23 @@
 </script>
 
 <style scoped>
-  .my-btn-green {
+  .my-btn-switch {
     color: white;
     background: #ff5959;
     border: 1px solid #facf5a;
     border-radius: 2px;
-    size: .25em
+    width: 60%;
+    height: 30%;
+    font-size: .5em
   }
 
-  button {
-    size: .25em
+  .my-btn-submit {
+    color: white;
+    background: #ff5959;
+    border: 1px solid #facf5a;
+    border-radius: 2px;
+    width: 20%;
+    height: 40px;
+    font-size: .9em
   }
 </style>
