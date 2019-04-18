@@ -7,9 +7,6 @@
           This is the default tile!
 
         </slot>
-        <button type="button" class="my-btn-close" @click="close">
-          x
-        </button>
       </header>
       <section class="my-modal-body">
         <slot name="content">
@@ -60,7 +57,7 @@
   }
 
   .my-modal {
-    background: #FFFFFF;
+    background: #fff;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
@@ -76,13 +73,14 @@
   }
 
   .my-modal-header {
-    border-bottom: 1px solid #eeeeee;
-    color: #4AAE9B;
-    justify-content: space-between;
+    justify-content: center;
+    color: #facf5a;
+    font-size: 2.5em;
+    border-bottom: 1px solid #ff5959
   }
 
   .my-modal-footer {
-    border-top: 1px solid #eeeeee;
+    border-top: 1px solid #facf5a;
     justify-content: flex-end;
   }
 
@@ -97,14 +95,14 @@
     padding: 20px;
     cursor: pointer;
     font-weight: bold;
-    color: #4AAE9B;
+    color: #ff5959;
     background: transparent;
   }
 
   .my-btn-green {
     color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
+    background: #ff5959;
+    border: 1px solid #facf5a;
     border-radius: 2px;
   }
 </style>

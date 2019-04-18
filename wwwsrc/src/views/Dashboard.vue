@@ -12,17 +12,20 @@
           <h2 class="sub-title text-left">Your Keeps</h2>
           <hr>
           <div class="row">
-            <div v-for="keep in keeps" class="card col-sm-12 col-lg-3 my-2 mx-1" @click="showOneKeep(keep)">
-              <div class="d-flex justify-content-around">
+            <div v-for="keep in keeps" class="card col-sm-12 col-lg-5 my-2 mx-1" @click="showOneKeep(keep)">
+              <div class="d-flex justify-content-around mt-1">
                 <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
-                <i class="far fa-edit" @click="showEditModal(keep)"></i>
+                <i class="far fa-edit" @click.stop="showEditModal(keep)"></i>
+                <i class="fas fa-user-secret" v-if="keep.isPrivate"></i>
               </div>
               <img class="card-img-top" :src="keep.img" alt="Card image cap">
-              <div class="card-body">
+              <div class="">
                 <h5 class="card-title">{{keep.name}}</h5>
                 <p class="card-text">{{keep.description}}</p>
-                <div>
-                  <i class="fas fa-user-secret" v-if="keep.isPrivate"></i>
+                <div class="d-flex justify-content-around icon-bg py-2">
+                  <i class="far fa-eye card-icon">: {{keep.views}}</i>
+                  <i class="fas fa-snowboarding card-icon">: {{keep.keeps}}</i>
+                  <i class="fas fa-share-alt-square card-icon">: {{keep.shares}}</i>
                 </div>
               </div>
             </div>
@@ -121,10 +124,6 @@
         this.editedKeep = keep
         this.showEdit = true;
       },
-      closemodal() {
-        this.showEdit = false
-        this.editedKeep = {}
-      },
       flipPrivate() {
         if (this.editedKeep.isPrivate) {
           this.editedKeep.isPrivate = false
@@ -143,6 +142,8 @@
       closemodal() {
         this.showKeepModal = false
         this.showVaultsModal = false
+        this.showEdit = false
+        this.editedKeep = {}
       }
 
     },
@@ -170,6 +171,8 @@
   .sub-title {
     color: #facf5a
   }
+
+  .icon-bg {}
 
   .modal-enter,
   .modal-leave-active {

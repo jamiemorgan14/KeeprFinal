@@ -11,6 +11,7 @@
               <h5 class="card-title">{{keep.name}}</h5>
               <p class="card-text">{{keep.description}}</p>
             </div>
+            <hr>
             <div class="d-flex justify-content-around icon-bg py-2">
               <i class="far fa-eye card-icon">: {{keep.views}}</i>
               <i class="fas fa-snowboarding card-icon">: {{keep.keeps}}</i>
@@ -83,12 +84,20 @@
     color: #facf5a
   }
 
+  hr {
+    margin: 0px
+  }
+
   .home {
     min-height: 100vh
   }
 
   .card-icon {
     color: #ff5959
+  }
+
+  .card-body {
+    padding: 5px
   }
 
   .fa-plus-square {

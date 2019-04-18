@@ -3,6 +3,7 @@
     <modal v-if="!showEditForm" @closemodal="$emit('closemodal')">
       <span slot="header">Your Vaults</span>
       <span slot="content">
+        <div v-if="vaults.length == 0">Create a Vault!</div>
         <allVaults></allVaults>
       </span>
       <span slot="icon">
@@ -27,7 +28,11 @@
     },
     updated() {
     },
-    computed: {},
+    computed: {
+      vaults() {
+        return this.$store.state.vaults
+      }
+    },
     methods: {
 
     },
