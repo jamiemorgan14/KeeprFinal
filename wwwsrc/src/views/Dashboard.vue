@@ -9,9 +9,10 @@
       </div>
       <div class="row">
         <div class="col-6 myKeeps">
-          <h2 class="sub-title">Your Keeps</h2>
+          <h2 class="sub-title text-left">Your Keeps</h2>
+          <hr>
           <div class="row">
-            <div v-for="keep in keeps" class="card col-sm-12 col-lg-4">
+            <div v-for="keep in keeps" class="card col-sm-12 col-lg-3 my-2 mx-1" @click="showOneKeep(keep)">
               <div class="d-flex justify-content-around">
                 <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
                 <i class="far fa-edit" @click="showEditModal(keep)"></i>
@@ -28,7 +29,8 @@
           </div>
         </div>
         <div class="col-6 myVaults">
-          <h2 class="sub-title">Your Vaults</h2>
+          <h2 class="sub-title text-left">Your Vaults</h2>
+          <hr>
           <AllVaults></AllVaults>
         </div>
       </div>
@@ -66,6 +68,11 @@
         </span>
       </modal>
     </transition>
+    <transition name="modal">
+      <CreateKeep v-if="showVaultsModal" @closemodal="closemodal"></CreateKeep>
+      <Keep :chosenKeep="chosenKeep" v-if="showKeepModal" @closemodal="closemodal"></Keep>
+    </transition>
+    <i class="fas fa-4x fa-plus-square" @click="showVaultsModal = true" v-if="user.id"></i>
   </div>
 </template>
 
@@ -73,19 +80,25 @@
   import Navbar from '@/components/Navbar.vue'
   import AllVaults from '@/components/AllVaults.vue'
   import Modal from '@/components/Modal.vue'
+  import Keep from '@/components/KeepModal.vue'
+  import CreateKeep from '@/components/CreateKeepModal.vue'
+
   export default {
     name: "dashboard",
     props: [],
     data() {
       return {
         showEdit: false,
+        showVaultsModal: false,
+        showKeepModal: false,
         editedKeep: {
           name: '',
           description: '',
           img: '',
           userId: this.$store.state.user.id,
           isPrivate: false
-        }
+        },
+        chosenKeep: {}
       }
     },
     created() {
@@ -122,23 +135,40 @@
       },
       editKeep(editedKeep) {
         this.$store.dispatch('editKeep', editedKeep)
+      },
+      showOneKeep(keep) {
+        this.chosenKeep = keep
+        this.showKeepModal = true
+      },
+      closemodal() {
+        this.showKeepModal = false
+        this.showVaultsModal = false
       }
+
     },
     components: {
       Navbar,
       AllVaults,
-      Modal
+      Modal,
+      CreateKeep,
+      Keep
     }
   }
 </script>
 
 <style scoped>
+  hr {
+    background-color: #4f9da6;
+    width: 60%;
+    margin-left: 0
+  }
+
   .dash {
     color: #ff5959
   }
 
   .sub-title {
-    color: #4f9da6
+    color: #facf5a
   }
 
   .modal-enter,
@@ -153,5 +183,12 @@
 
   .dashboard {
     min-height: 100vh
+  }
+
+  .fa-plus-square {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    color: #facf5a
   }
 </style>

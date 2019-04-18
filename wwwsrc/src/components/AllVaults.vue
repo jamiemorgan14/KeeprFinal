@@ -1,7 +1,7 @@
 <template>
   <div class="AllVaults">
     <div class="row">
-      <div v-for="vault in allVaults" class="card col-sm-12 col-md-5 mx-3">
+      <div v-for="vault in allVaults" class="card col-sm-12 col-md-3 mx-1 my-2">
         <div class="d-flex justify-content-between mx-2">
           <i data-dismiss="modal" class="far fa-eye" @click="goToVault(vault.id)"></i>
           <i class="fas fa-times" @click="deleteVault(vault.id)"></i>

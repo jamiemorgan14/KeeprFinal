@@ -99,7 +99,7 @@
   .navbar {
     width: 100%;
     position: static;
-    background-color: #ff5959;
+    background-color: #ff5959
   }
 
   .fa-hamburger {
@@ -107,22 +107,26 @@
   }
 
   .nav-item {
-    color: #233142
+    color: #233142;
+    text-shadow: .5px .5px rgba(255, 255, 255, 0.582)
   }
 
   .my-brand {
     color: #facf5a;
     margin-right: 5px;
-    display: inline-block
+    display: inline-block;
+    text-shadow: .5px .5px rgba(255, 255, 255, 0.589)
   }
 
   .modal-enter,
   .modal-leave-active {
     opacity: 0;
+    z-index: 500
   }
 
   .modal-enter-active,
   .modal-leave-active {
     transition: opacity .45s ease;
+    z-index: 500
   }
 </style>
