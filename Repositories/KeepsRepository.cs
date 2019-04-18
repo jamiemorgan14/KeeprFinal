@@ -16,7 +16,7 @@ namespace keepr.Repositories
 
     public IEnumerable<Keep> GetALL()
     {
-      return _db.Query<Keep>("SELECT * FROM keeps");
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE isPrivate = false");
     }
 
     public Keep GetById(int Id)

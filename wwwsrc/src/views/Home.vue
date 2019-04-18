@@ -5,16 +5,16 @@
       <h1 class="welcome my-3 text-capitalize">Welcome Home {{user.username}}</h1>
       <div class="row" @mouseover="clickableCard = true" @mouseleave="clickableCard = false">
         <div class="card-columns">
-          <div @click="viewKeep(keep)" v-for="keep in keeps" v-if="!keep.isPrivate" class="card w-100" :class="{'clickable-card': clickableCard}">
-            <div class="d-flex justify-content-around my-2">
-              <i class="far fa-eye">: {{keep.views}}</i>
-              <i class="fas fa-snowboarding">: {{keep.keeps}}</i>
-              <i class="fas fa-share-alt-square">: {{keep.shares}}</i>
-            </div>
+          <div @click="viewKeep(keep)" v-for="keep in keeps" class="card w-100" :class="{'clickable-card': clickableCard}">
             <img class="card-img-top" :src="keep.img" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{keep.name}}</h5>
               <p class="card-text">{{keep.description}}</p>
+            </div>
+            <div class="d-flex justify-content-around icon-bg py-2">
+              <i class="far fa-eye card-icon">: {{keep.views}}</i>
+              <i class="fas fa-snowboarding card-icon">: {{keep.keeps}}</i>
+              <i class="fas fa-share-alt-square card-icon">: {{keep.shares}}</i>
             </div>
           </div>
         </div>
@@ -85,6 +85,10 @@
 
   .home {
     min-height: 100vh
+  }
+
+  .card-icon {
+    color: #ff5959
   }
 
   .fa-plus-square {

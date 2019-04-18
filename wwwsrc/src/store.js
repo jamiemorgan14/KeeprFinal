@@ -23,6 +23,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     keeps: [],
+    userKeeps: [],
     activeKeep: {},
     vaults: [],
     activeVault: {},
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     setActiveKeep(state, activeKeep) {
       state.activeKeep = activeKeep
+    },
+    setUserKeeps(state, userKeeps) {
+      state.userKeeps = userKeeps
     },
     setVaults(state, vaults) {
       state.vaults = vaults;
@@ -96,7 +100,7 @@ export default new Vuex.Store({
     getKeepsByUser({ commit, dispatch }) {
       api.get('keeps/dashboard')
         .then(res => {
-          commit('setKeeps', res.data)
+          commit('setUserKeeps', res.data)
         })
     },
     getActiveKeep({ commit, dispatch }, id) {

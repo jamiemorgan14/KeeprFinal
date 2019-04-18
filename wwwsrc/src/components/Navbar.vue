@@ -1,7 +1,7 @@
 <template>
   <div class="navbar px-0 py-0 mb-2">
     <nav class="navbar navbar-expand-lg">
-      <h2 class="my-brand">Keepr</h2>
+      <h2 class="my-brand" @click="goHome">Keepr</h2>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-hamburger fa-2x"></i>
@@ -78,6 +78,11 @@
         this.$router.push({ name: 'dashboard' })
       },
       logout() {
+        this.$store.state.userKeeps = []
+        this.$store.state.vaults = []
+        this.$store.state.activeKeep = {}
+        this.$store.state.activeVault = {}
+        this.$store.state.vaultKeeps = []
         this.$store.dispatch('logout')
       },
       login() {

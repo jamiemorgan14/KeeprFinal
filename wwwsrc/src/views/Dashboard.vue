@@ -106,7 +106,7 @@
     },
     computed: {
       keeps() {
-        return this.$store.state.keeps
+        return this.$store.state.userKeeps
       },
       user() {
         return this.$store.state.user
