@@ -26,6 +26,11 @@
         showEditForm: false,
       }
     },
+    watch: {
+      $route: function (to, from) {
+        this.$emit('closemodal')
+      }
+    },
     updated() {
     },
     computed: {

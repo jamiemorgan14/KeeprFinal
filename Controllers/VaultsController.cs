@@ -90,5 +90,15 @@ namespace keepr.Controllers
       if (found == null) { return BadRequest(); }
       return Ok(found);
     }
+
+    [HttpDelete("{vaultId}/keeps/{keepId}")]
+    [Authorize]
+    public ActionResult<string> Delete(int vaultId, int keepId)
+    {
+      var userId = HttpContext.User.Identity.Name;
+      bool successful = _vr.DeleteVk(vaultId, keepId, userId);
+      if (!successful) { return BadRequest("you suck"); }
+      return Ok();
+    }
   }
 }

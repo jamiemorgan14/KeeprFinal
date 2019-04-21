@@ -7,7 +7,7 @@
       <div class="row">
         <div class="card-columns">
           <div v-for="keep in vaultKeeps" class="card">
-            <i class="fas fa-times mb-2" @click.stop="deleteKeep(keep.id)"></i>
+            <i class="fas fa-times mb-2" @click.stop="deleteVaultKeep(keep.id)"></i>
             <img class="card-img-top" :src="keep.img" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{keep.name}}</h5>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import store from '../store.js'
   import Navbar from '@/components/Navbar.vue'
   export default {
     name: "Vault",
@@ -29,8 +30,15 @@
       this.$store.dispatch('getActiveVault', this.$route.params.vaultId)
       this.$store.dispatch('getVaultKeeps', this.$route.params.vaultId)
     },
+    watch: {
+      $route: function (to, from) {
+        this.$store.dispatch('getActiveVault', this.$route.params.vaultId)
+        this.$store.dispatch('getVaultKeeps', this.$route.params.vaultId)
+      }
+    },
     data() {
-      return {}
+      return {
+      }
     },
     computed: {
       currentVault() {
@@ -40,7 +48,11 @@
         return this.$store.state.vaultKeeps
       }
     },
-    methods: {},
+    methods: {
+      deleteVaultKeep(keepId) {
+        this.$store.dispatch('deleteVaultKeep', { keepId: keepId, vaultId: this.currentVault.id });
+      }
+    },
     components: {
       Navbar
     }

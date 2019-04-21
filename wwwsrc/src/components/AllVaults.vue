@@ -32,7 +32,7 @@
     },
     methods: {
       goToVault(id) {
-        this.$router.push('/dashboard/vaults/' + id)
+        this.$router.push({ name: "vault", params: { vaultId: id } })
       },
       deleteVault(id) {
         this.$store.dispatch('deleteVault', id)

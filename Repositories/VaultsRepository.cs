@@ -96,8 +96,26 @@ namespace keepr.Repositories
     SELECT * 
       FROM vaultkeeps vk
         INNER JOIN keeps k ON k.id = vk.keepId 
-        WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+        WHERE (vaultId = @vaultId AND vk.userId = @userId);
     ", new { vaultId, userId });
+    }
+
+    public bool DeleteVk(int vaultId, int keepId, string userId)
+    {
+      try
+      {
+        string query = @"
+        DELETE FROM vaultkeeps 
+        WHERE vaultId = @vaultId AND keepId = @keepId AND userId = @userId
+        LIMIT 1;";
+        int deleted = _db.Execute(query, new { vaultId, keepId, userId });
+        return deleted == 1;
+      }
+      catch (Exception e)
+      {
+        System.Console.WriteLine(e);
+        return false;
+      }
     }
   }
 }

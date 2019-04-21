@@ -14,7 +14,7 @@
           <div v-if="this.$store.state.user.id">
             <div class="d-flex justify-content-between">
               <i class="fas fa-plus-square"></i>
-              <i class="far fa-trash-alt" @click="deleteKeep(currentKeep.id)"></i>
+              <i v-if="currentKeep.userId == user.id" class="far fa-trash-alt" @click="deleteKeep(currentKeep.id)"></i>
               <i class="fas fa-piggy-bank" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <!-- Example split danger button -->
 
@@ -57,6 +57,9 @@
       },
       vaults() {
         return this.$store.state.vaults
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     methods: {
@@ -70,6 +73,7 @@
       deleteKeep(id) {
         this.$store.dispatch('deleteKeep', id)
         this.$store.dispatch('getKeeps')
+        this.$emit('closemodal')
       },
     },
     components: {
